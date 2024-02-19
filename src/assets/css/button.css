@@ -1,0 +1,26 @@
+/* Button Styles */
+.btn {
+}
+
+.btn:hover {
+    cursor: pointer;
+}
+
+.btn:active {
+    transform: translateY(0.1em);
+    background-color: rgba(0, 188, 248, 0.75);
+}
+
+.btn:focus {
+    outline: none;
+}
+
+.btn-primary {
+    color: white;
+    background-color: rgba(0, 188, 248);
+    padding-left: 1.5em;
+    padding-right: 1.5em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    border-radius: 0.5em;
+}

@@ -1,0 +1,59 @@
+.table-actions {
+    background-color: rgba(17, 133, 183, 0.25);
+    border-radius: 1.25em;
+    width: 100%;
+    padding: 1em;
+}
+
+.table-body {
+    background-color: rgba(17, 133, 183, 0.25);
+    height: 100%;
+    width: 100%;
+    border-radius: 1.25em;
+    margin-top: 1em;
+}
+
+.table-body table {
+    display: flex;
+    flex-direction: column;
+}
+
+.table-body table thead {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1em;
+}
+
+.table-body table thead th {
+    padding: 1em;
+    text-align: center;
+    background-color: rgba(17, 133, 183, 0.25);
+    color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    border-radius: 1.25em;
+}
+
+.table-body table thead th tr {
+}
+
+.table-body table thead th tr th {
+    padding: 1em;
+    text-align: center;
+    background-color: rgba(17, 133, 183, 0.25);
+    color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    border-radius: 1.25em;
+}
+
+.table-body table tbody tr {
+    color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 1.75em;
+}
