@@ -4,6 +4,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import MainPage from "./components/MainPage";
 import Dashboard from "./components/Dashboard";
 import ProductManagement from "./components/sub-components/ProductManagement";
+import ProductInfo from "./components/ui-components/ProductInfo";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
         path: "/dashboard/inventory/product-management",
         element: <ProductManagement />,
       },
+      {
+        path: "/dashboard/inventory/product-management/:id",
+        element: <ProductInfo />,
+      }
     ],
   },
 ]);

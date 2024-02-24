@@ -1,2 +1,20 @@
 @import "button.css";
 @import "page.css";
+@import "dropdown.css";
+
+.align-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-background {
+
+}
+
+.modal-body {
+    position: fixed;
+    width: 75%;
+    height: 75%;
+    background-color: rgba(0, 0, 0, .85);
+}

@@ -17,7 +17,9 @@
 
 .module-container .sub-module-container .sub-module-name {
     color: white;
-    height: 2.5em;
+    /* height: 2.5em; */
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
     font-size: 1.25em;
     text-align: left;
     padding-left: 2em;

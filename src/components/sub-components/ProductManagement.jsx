@@ -1,15 +1,27 @@
+import { useState } from "react";
 import "../../assets/css/table.css";
+import ProductInfo from "../ui-components/ProductInfo";
 
 function ProductManagement() {
+
+  const [isOpenAdd, setIsOpenAdd] = useState(false);
+
+  const openAdd = () => {
+    console.log("openAdd");
+    setIsOpenAdd(true);
+  };
+
   return (
-    <div class="page-pane">
+    <div className="page-pane">
       <div className="mandali-regular page-header">
         <div className="page-title">Products List</div>
       </div>
 
       <div className="page-content">
         <div className="table-actions">
-          Table Actions will be displayed here
+          <div className="table-action" onClick={openAdd}><img className="inline-block" src="https://img.icons8.com/?size=25&id=102544&format=png"/> Add </div>
+          <div className="table-action"><img className="inline-block" src="https://img.icons8.com/?size=25&id=102544&format=png" /> Edit </div>
+          <div className="table-action"><img className="inline-block" src="https://img.icons8.com/?size=25&id=102544&format=png" /> Delete</div>
         </div>
         <div className="table-body">
           <table>
@@ -94,6 +106,9 @@ function ProductManagement() {
           </table>
         </div>
       </div>
+
+      {isOpenAdd && <ProductInfo />}
+
     </div>
   );
 }

@@ -3,6 +3,10 @@
     border-radius: 1.25em;
     width: 100%;
     padding: 1em;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    left: 0;
 }
 
 .table-body {
@@ -56,4 +60,26 @@
     flex-direction: row;
     justify-content: space-around;
     padding: 1.75em;
+}
+
+.table-actions .table-action {
+    margin-right: 1em;
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    align-items: center;
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-top: 0.25em;
+    padding-bottom: 0.25em;
+    border-radius: 1.25em;
+    background-color: rgba(17, 133, 183, 0.25);
+    cursor: pointer;
+}
+
+.table-actions .table-action:hover {
+    background-color: rgba(17, 133, 183, 0.5);
+}
+
+.table-actions .table-action:active {
+    background-color: rgba(17, 133, 183, 0.75);
 }
