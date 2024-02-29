@@ -1,16 +1,13 @@
 import { useState } from "react";
 import TextField from "../ui-elements/TextField";
 import "../../assets/css/product.css";
-import Dropdown from "../ui-elements/Dropdown";
 import Button from "../ui-elements/Button";
 import { useParams } from "react-router-dom";
+import axios from "axios";
 
-function ProductInfo({ closeModal }) {
-  const [productInfo, setProductInfo] = useState({
+function ProductCategoryInfo({ closeModal }) {
+  const [productCategory, setProductCategory] = useState({
     name: "",
-    description: "",
-    category: "",
-    price: "",
   });
 
   const params = useParams();
@@ -19,38 +16,27 @@ function ProductInfo({ closeModal }) {
     // Need to call API to get product info
   }
 
-  const defaultCategories = [
-    {
-      id: 1,
-      name: "Electronics",
-    },
-    {
-      id: 2,
-      name: "Clothing",
-    },
-    {
-      id: 3,
-      name: "Footwear",
-    },
-    {
-      id: 4,
-      name: "Accessories",
-    },
-  ];
-
-  const changeSelectedCategory = (id) => {
-    setProductInfo({ ...productInfo, category: id });
-  };
-
-  const [categories, setCategories] = useState(defaultCategories);
-
   const onChange = (e, id) => {
-    setProductInfo({ ...productInfo, [id]: e.target.value });
+    setProductCategory({ ...productCategory, [id]: e.target.value });
   };
 
-  const saveProduct = () => {
+  const saveCategory = async () => {
     // Need to add product form validation
-    // Need to call API to save product
+    // Need to call API to save category
+    // Need to close modal
+    // closeModal();
+    // Need to call API to save category using axios
+    let response = await axios
+      .post("http://localhost:3000/api/categories", {
+        categoryName: productCategory.name,
+      })
+      .then((response) => {
+        console.log(response);
+        closeModal();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   const triggerModalClose = () => {
@@ -63,7 +49,7 @@ function ProductInfo({ closeModal }) {
       <div className="modal-body relative w-full max-w-lg rounded-md p-6 shadow-lg">
         <div className="flex items-center border-b pb-3 text-white">
           <h3 className="mandali-regular flex-1 text-xl font-bold">
-            Add/Edit Product
+            Add/Edit Category
           </h3>
           <svg
             onClick={triggerModalClose}
@@ -88,49 +74,31 @@ function ProductInfo({ closeModal }) {
               <TextField
                 id="name"
                 type="text"
-                placeholder="Enter product name"
-                value={productInfo.name}
+                placeholder="Enter category name"
+                value={productCategory.name}
                 onChange={(e) => onChange(e, "name")}
               />
             </div>
-            <div className="product-form-entry">
-              <p className="product-label">Description</p>
-              <TextField
-                id="description"
-                type="text"
-                placeholder="Enter product description"
-                value={productInfo.description}
-                onChange={(e) => onChange(e, "description")}
+          </div>
+          <div className="flex justify-around space-x-4 border-t pt-6">
+            <div className="product-form-entry align-center">
+              <Button
+                value="Cancel"
+                onClick={triggerModalClose}
+                className={
+                  "rounded-md border-none bg-gray-200 px-6 py-2 text-sm text-black outline-none hover:bg-gray-300 active:bg-gray-200"
+                }
               />
             </div>
-            <div className="product-form-entry">
-              <p className="product-label">Category</p>
-              <Dropdown
-                values={categories}
-                onChange={changeSelectedCategory}
-                id={productInfo.category}
+            <div className="product-form-entry align-center">
+              <Button
+                value="Save"
+                onClick={saveCategory}
+                className={
+                  "btn-primary outline-nones rounded-md border-none px-6 py-2 text-sm text-white"
+                }
               />
             </div>
-          </div>
-        </div>
-        <div className="flex justify-around space-x-4 border-t pt-6">
-          <div className="product-form-entry align-center">
-            <Button
-              value="Cancel"
-              onClick={triggerModalClose}
-              className={
-                "rounded-md border-none bg-gray-200 px-6 py-2 text-sm text-black outline-none hover:bg-gray-300 active:bg-gray-200"
-              }
-            />
-          </div>
-          <div className="product-form-entry align-center">
-            <Button
-              value="Save"
-              onClick={saveProduct}
-              className={
-                "btn-primary outline-nones rounded-md border-none px-6 py-2 text-sm text-white"
-              }
-            />
           </div>
         </div>
       </div>
@@ -138,4 +106,4 @@ function ProductInfo({ closeModal }) {
   );
 }
 
-export default ProductInfo;
+export default ProductCategoryInfo;

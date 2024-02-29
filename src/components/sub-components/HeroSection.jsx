@@ -1,10 +1,9 @@
 import React from "react";
-import LoginForm from "../ui-components/LoginForm";
 
-function HeroSection() {
+function HeroSection({ children }) {
   return (
-    <div className="grid grid-cols-5 gap-3">
-      <div className="col-span-3">
+    <div className="grid grid-cols-6 gap-3">
+      <div className="col-span-4">
         <div>
           <div className="mandali-regular text-color-white hero-section-title">
             We are here to deliver the experience.
@@ -14,9 +13,7 @@ function HeroSection() {
           </div>
         </div>
       </div>
-      <div className="col-span-2 ">
-        <LoginForm />
-      </div>
+      <div className="col-span-2 ">{children}</div>
     </div>
   );
 }

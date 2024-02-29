@@ -11,10 +11,9 @@
 }
 
 .product-form {
-    width: 50%;
-    background-color: rgba(17, 133, 183, 0.25);
     border-radius: 5px;
     box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
+    color: "white";
 }
 
 .product-form-entry {
@@ -22,7 +21,6 @@
     flex-direction: row;
     padding: 10px;
     width: 100%;
-
 }
 
 .product-label {
@@ -30,6 +28,7 @@
     font-size: 1.2em;
     width: 25%;
     text-align: left;
+    color: white;
 }
 
 .product-form .text-field-primary {

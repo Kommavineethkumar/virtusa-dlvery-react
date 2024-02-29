@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "../../assets/css/table.css";
-import ProductInfo from "../ui-components/ProductInfo";
+import ProductCategoryInfo from "../ui-components/ProductCategoryInfo";
 import ProductsTable from "../ui-components/ProductsTable";
 
 function ProductManagement() {
@@ -19,7 +19,7 @@ function ProductManagement() {
   return (
     <div className="page-pane">
       <div className="mandali-regular page-header">
-        <div className="page-title">Product List</div>
+        <div className="page-title">Product Categories</div>
       </div>
 
       <div className="page-content">
@@ -49,7 +49,7 @@ function ProductManagement() {
         <ProductsTable />
       </div>
 
-      {isOpenAdd && <ProductInfo closeModal={closeAdd} />}
+      {isOpenAdd && <ProductCategoryInfo closeModal={closeAdd} />}
     </div>
   );
 }

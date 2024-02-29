@@ -3,7 +3,7 @@ import TextField from "../ui-elements/TextField";
 import Button from "../ui-elements/Button";
 import { Link } from "react-router-dom";
 
-function LoginForm() {
+function LoginForm({ handleLogin }) {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
 
@@ -16,19 +16,29 @@ function LoginForm() {
   };
 
   const loginUser = () => {
-    console.log("Login user with email: ", email);
-    console.log("Login user with password: ", password);
+    if (!email || !password) {
+      alert("Please enter email and password");
+      return;
+    }
+    if (!email.includes("@")) {
+      alert("Please enter valid email");
+      return;
+    }
+
+    handleLogin({ email, password });
   };
 
   return (
     <div className="login-form-container">
       <div>
-        <div className="mandali-regular text-color-white text-align-left login-text">
+        <div className="mandali-regular text-color-white align-center login-text ">
           Login
         </div>
       </div>
       <div>
         <TextField
+          parentClassName="align-center"
+          className="text-field text-field-primary"
           id="email"
           type="email"
           placeholder="Enter your email"
@@ -37,6 +47,8 @@ function LoginForm() {
         />
 
         <TextField
+          parentClassName="align-center"
+          className="text-field text-field-primary"
           id="password"
           type="password"
           placeholder="Enter your password"
@@ -44,9 +56,9 @@ function LoginForm() {
           onChange={(e) => onChange(e, "password")}
         />
 
-        <Link to="/dashboard">
+        <div className="align-center">
           <Button value="Login" onClick={loginUser} className={"btn-primary"} />
-        </Link>
+        </div>
       </div>
     </div>
   );

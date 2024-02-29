@@ -1,11 +1,20 @@
 import React from "react";
 
-function TextField({ id, label, type, placeholder, value, onChange }) {
+function TextField({
+  parentClassName,
+  className,
+  id,
+  label,
+  type,
+  placeholder,
+  value,
+  onChange,
+}) {
   return (
-    <div>
+    <div className={parentClassName}>
       <label>{label}</label>
       <input
-        className={"text-field text-field-primary"}
+        className={className}
         type={type}
         placeholder={placeholder}
         value={value}

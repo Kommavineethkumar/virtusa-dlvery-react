@@ -1,11 +1,11 @@
-function HeaderLise() {
+function HeaderLite() {
   return (
     <div className="header-lite-container">
-      <div className="text-align-left text-color-white">
+      <div className="text-color-white px-5 py-2">
         {"Inventory > Product Management > Products List"}{" "}
       </div>
     </div>
   );
 }
 
-export default HeaderLise;
+export default HeaderLite;
