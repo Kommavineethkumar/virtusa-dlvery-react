@@ -5,9 +5,10 @@ import Button from "../ui-elements/Button";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 
-function ProductCategoryInfo({ closeModal }) {
+function ProductCategoryInfo({ closeModal, categoryData }) {
   const [productCategory, setProductCategory] = useState({
-    name: "",
+    categoryId: categoryData.categoryId || "",
+    categoryName: categoryData.categoryName || "",
   });
 
   const params = useParams();
@@ -75,7 +76,7 @@ function ProductCategoryInfo({ closeModal }) {
                 id="name"
                 type="text"
                 placeholder="Enter category name"
-                value={productCategory.name}
+                value={productCategory.categoryName}
                 onChange={(e) => onChange(e, "name")}
               />
             </div>

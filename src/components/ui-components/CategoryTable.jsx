@@ -1,20 +1,15 @@
 import "../../assets/css/table.css";
 import "../../assets/css/common.css";
 import TablePagination from "./TablePagination";
-import ProductTableRow from "./ProductTableRow";
+import CategoryTableRow from "./CategoryTableRow";
 import TableHeader from "./TableHeader";
 
-function ProductsTable({ rows = [], callInnerTableAction }) {
+function CategoryTable({ rows = [], callInnerTableAction }) {
   const headers = [
     {
-      name: "Product Id",
-      value_key: "productId",
+      name: "Category Id",
+      value_key: "categoryId",
       class: "max-w-20",
-    },
-    {
-      name: "Product Name",
-      type: "text",
-      value_key: "productName",
     },
     {
       name: "Actions",
@@ -26,15 +21,15 @@ function ProductsTable({ rows = [], callInnerTableAction }) {
           {
             name: "Edit",
             icon: "https://img.icons8.com/?size=23&id=8rqSU6umQzpk&format=png",
-            action: "editProduct",
             class: "max-w-fit",
+            action: "editCategory",
           },
         ],
       },
     },
     {
-      name: "Expiry Date",
-      value_key: "expiryDate",
+      name: "Category Name",
+      value_key: "categoryName",
     },
   ];
 
@@ -48,7 +43,6 @@ function ProductsTable({ rows = [], callInnerTableAction }) {
       document.getElementById("checkbox" + index).checked = true;
     }
   };
-
   return (
     <div>
       <div className="overflow-x-auto">
@@ -59,7 +53,7 @@ function ProductsTable({ rows = [], callInnerTableAction }) {
           <tbody className="whitespace-nowrap">
             {rows.map((row, index) => {
               return (
-                <ProductTableRow
+                <CategoryTableRow
                   key={"row_" + index}
                   row={row}
                   headers={headers}
@@ -77,4 +71,4 @@ function ProductsTable({ rows = [], callInnerTableAction }) {
   );
 }
 
-export default ProductsTable;
+export default CategoryTable;

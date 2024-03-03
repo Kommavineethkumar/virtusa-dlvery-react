@@ -3,6 +3,7 @@ import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import AuthProvider from "./common/AuthProvider";
 import Routes from "./common/Routes";
+import { DataProvider } from "./common/DataProvider";
 // import MainPage from "./components/MainPage";
 // import Dashboard from "./components/Dashboard";
 // import ProductManagement from "./components/sub-components/ProductManagement";
@@ -36,7 +37,9 @@ import Routes from "./common/Routes";
 function App() {
   return (
     <AuthProvider>
-      <Routes />
+      <DataProvider>
+        <Routes />
+      </DataProvider>
     </AuthProvider>
   );
 }

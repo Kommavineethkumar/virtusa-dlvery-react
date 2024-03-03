@@ -1,4 +1,4 @@
-function Dropdown({ onChange, values, id }) {
+function Dropdown({ onChange, values, id, keyName }) {
   const localOnChange = (e) => {
     onChange(e.target.value);
   };
@@ -10,10 +10,10 @@ function Dropdown({ onChange, values, id }) {
           return (
             <option
               key={index}
-              value={value.id}
-              onClick={() => onChange(value.id)}
+              value={value[keyName]}
+              onClick={() => onChange(value[keyName])}
             >
-              {value.name}
+              {value[keyName]}
             </option>
           );
         })}

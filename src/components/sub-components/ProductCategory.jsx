@@ -1,19 +1,40 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "../../assets/css/table.css";
 import ProductCategoryInfo from "../ui-components/ProductCategoryInfo";
-import ProductsTable from "../ui-components/ProductsTable";
+import CategoryTable from "../ui-components/CategoryTable";
+import { useAppContext } from "../../common/DataProvider";
 
 function ProductManagement() {
+  const { data, updateData, getValueFromContext } = useAppContext();
+  const [categoryData, setCategoryData] = useState({});
+  useEffect(() => {
+    async function fetchCategories() {
+      await getValueFromContext("categories");
+    }
+    fetchCategories();
+  }, []);
   const [isOpenAdd, setIsOpenAdd] = useState(false);
 
   const openAdd = () => {
-    console.log("openAdd");
     setIsOpenAdd(true);
   };
 
   const closeAdd = () => {
-    console.log("closeAdd");
     setIsOpenAdd(false);
+  };
+
+  const editCategory = (row) => {
+    console.log("editCategory12");
+    setIsOpenAdd(true);
+    setCategoryData(row);
+  };
+
+  const callInnerTableAction = (action, row) => {
+    console.log(action, row);
+    console.log(action.action);
+    if (typeof eval(action.action) === "function") {
+      eval(action.action)(row);
+    }
   };
 
   return (
@@ -28,28 +49,29 @@ function ProductManagement() {
             <img
               className="inline-block"
               src="https://img.icons8.com/?size=25&id=102544&format=png"
-            />{" "}
-            Add{" "}
+            />
+            <div className="action-name"> Add </div>
           </div>
           <div className="table-action">
             <img
               className="inline-block"
-              src="https://img.icons8.com/?size=25&id=102544&format=png"
-            />{" "}
-            Edit{" "}
-          </div>
-          <div className="table-action">
-            <img
-              className="inline-block"
-              src="https://img.icons8.com/?size=25&id=102544&format=png"
-            />{" "}
-            Delete
+              src="https://img.icons8.com/?size=23&id=102550&format=png"
+            />
+            <div className="action-name"> Delete </div>
           </div>
         </div>
-        <ProductsTable />
+        <CategoryTable
+          rows={data.categories}
+          callInnerTableAction={callInnerTableAction}
+        />
       </div>
 
-      {isOpenAdd && <ProductCategoryInfo closeModal={closeAdd} />}
+      {isOpenAdd && (
+        <ProductCategoryInfo
+          closeModal={closeAdd}
+          categoryData={categoryData}
+        />
+      )}
     </div>
   );
 }

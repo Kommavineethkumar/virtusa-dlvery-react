@@ -2,6 +2,7 @@ import React from "react";
 import TextField from "../ui-elements/TextField";
 import Button from "../ui-elements/Button";
 import { Link } from "react-router-dom";
+import { isEnterPressed } from "../../common/input-utils";
 
 function LoginForm({ handleLogin }) {
   const [email, setEmail] = React.useState("");
@@ -35,26 +36,28 @@ function LoginForm({ handleLogin }) {
           Login
         </div>
       </div>
-      <div>
-        <TextField
-          parentClassName="align-center"
-          className="text-field text-field-primary"
-          id="email"
-          type="email"
-          placeholder="Enter your email"
-          value={email}
-          onChange={(e) => onChange(e, "email")}
-        />
-
-        <TextField
-          parentClassName="align-center"
-          className="text-field text-field-primary"
-          id="password"
-          type="password"
-          placeholder="Enter your password"
-          value={password}
-          onChange={(e) => onChange(e, "password")}
-        />
+      <div className="p-2">
+        <div className="align-center">
+          <TextField
+            className="text-field text-field-primary"
+            id="email"
+            type="email"
+            placeholder="Enter your email"
+            value={email}
+            onChange={(e) => onChange(e, "email")}
+          />
+        </div>
+        <div className="align-center">
+          <TextField
+            className="text-field text-field-primary"
+            id="password"
+            type="password"
+            placeholder="Enter your password"
+            value={password}
+            onChange={(e) => onChange(e, "password")}
+            keyUp={(e) => isEnterPressed(e, loginUser)}
+          />
+        </div>
 
         <div className="align-center">
           <Button value="Login" onClick={loginUser} className={"btn-primary"} />

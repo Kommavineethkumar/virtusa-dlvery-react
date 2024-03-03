@@ -1,17 +1,27 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import TextField from "../ui-elements/TextField";
 import "../../assets/css/product.css";
 import Dropdown from "../ui-elements/Dropdown";
 import Button from "../ui-elements/Button";
 import { useParams } from "react-router-dom";
+import { useAppContext } from "../../common/DataProvider";
 
-function ProductInfo({ closeModal }) {
+function ProductInfo({ closeModal, productData }) {
+  const { data, updateData, getValueFromContext } = useAppContext();
+  const [categories, setCategories] = useState([]);
+  console.log(productData, "productData");
   const [productInfo, setProductInfo] = useState({
-    name: "",
-    description: "",
-    category: "",
-    price: "",
+    name: productData.productName || "",
+    category: "" || productData.category.categoryName,
+    Id: productData.productId,
   });
+
+  useEffect(() => {
+    async function fetchCategories() {
+      await getValueFromContext("categories");
+    }
+    fetchCategories();
+  }, []);
 
   const params = useParams();
 
@@ -19,39 +29,15 @@ function ProductInfo({ closeModal }) {
     // Need to call API to get product info
   }
 
-  const defaultCategories = [
-    {
-      id: 1,
-      name: "Electronics",
-    },
-    {
-      id: 2,
-      name: "Clothing",
-    },
-    {
-      id: 3,
-      name: "Footwear",
-    },
-    {
-      id: 4,
-      name: "Accessories",
-    },
-  ];
-
   const changeSelectedCategory = (id) => {
     setProductInfo({ ...productInfo, category: id });
   };
-
-  const [categories, setCategories] = useState(defaultCategories);
 
   const onChange = (e, id) => {
     setProductInfo({ ...productInfo, [id]: e.target.value });
   };
 
-  const saveProduct = () => {
-    // Need to add product form validation
-    // Need to call API to save product
-  };
+  const saveProduct = () => {};
 
   const triggerModalClose = () => {
     // Need to close modal
@@ -86,6 +72,8 @@ function ProductInfo({ closeModal }) {
             <div className="product-form-entry">
               <p className="product-label">Name</p>
               <TextField
+                parentClassName="align-center"
+                className="text-field text-field-primary"
                 id="name"
                 type="text"
                 placeholder="Enter product name"
@@ -94,19 +82,10 @@ function ProductInfo({ closeModal }) {
               />
             </div>
             <div className="product-form-entry">
-              <p className="product-label">Description</p>
-              <TextField
-                id="description"
-                type="text"
-                placeholder="Enter product description"
-                value={productInfo.description}
-                onChange={(e) => onChange(e, "description")}
-              />
-            </div>
-            <div className="product-form-entry">
               <p className="product-label">Category</p>
               <Dropdown
-                values={categories}
+                values={data.categories}
+                keyName={["categoryName"]}
                 onChange={changeSelectedCategory}
                 id={productInfo.category}
               />

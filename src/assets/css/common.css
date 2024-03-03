@@ -100,7 +100,6 @@
     background: rgba(17, 133, 183, 0.25);
     background-color: rgba(17, 133, 183);
     border-radius: 0.5em;
-    width: 80%;
 }
 
 .text-field-primary::placeholder {
@@ -146,6 +145,8 @@
 
 /* Login Form */
 .login-form-container {
+    display: flex;
+    flex-direction: column;
     background-color: rgba(17, 133, 183, 0.25);
     border-radius: 1em;
     padding-bottom: 3em;

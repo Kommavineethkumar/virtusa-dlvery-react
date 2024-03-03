@@ -34,4 +34,5 @@
 .product-form .text-field-primary {
     width: 100%;
     margin-left: 1.5em;
+    flex-grow: 2;
 }

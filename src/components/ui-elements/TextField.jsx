@@ -9,18 +9,25 @@ function TextField({
   placeholder,
   value,
   onChange,
+  keyUp,
 }) {
+  const triggerKeyUpFunction = (event) => {
+    if (typeof keyUp === "function") {
+      keyUp(event);
+    }
+  };
+
   return (
-    <div className={parentClassName}>
-      <label>{label}</label>
-      <input
-        className={className}
-        type={type}
-        placeholder={placeholder}
-        value={value}
-        onChange={(event) => onChange(event, id)}
-      />
-    </div>
+    <input
+      className={className}
+      type={type}
+      placeholder={placeholder}
+      value={value}
+      onChange={(event) => onChange(event, id)}
+      onKeyUp={(event) => {
+        triggerKeyUpFunction(event);
+      }}
+    />
   );
 }
 
